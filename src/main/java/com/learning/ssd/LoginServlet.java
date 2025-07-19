@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,12 +22,14 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = res.getWriter();
 		
 		if (myemail.equals("honey@gmail.com") && mypass.equals("1234")) {
-			req.setAttribute("name_key", "Honey Chauhan");
+			//req.setAttribute("name_key", "Honey Chauhan");
+			HttpSession session = req.getSession();
+			session.setAttribute("name_key", "Honey Chauhan");
 			RequestDispatcher rd = req.getRequestDispatcher("profile.jsp");
-			rd.include(req, res);
+			rd.forward(req, res);
 		} else {
 			res.setContentType("text/html");
-			out.println("<h3 style='color:red'>Email and Password didn't match</h3>");
+			req.setAttribute("error_msg", "Email and Password didn't match");
 			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
 			rd.include(req, res);
 			
