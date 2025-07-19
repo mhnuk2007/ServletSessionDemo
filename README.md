@@ -77,7 +77,7 @@ ServletSessionDemo/
 
 ## 📦 Dependencies
 
-Make sure your project has the Jakarta Servlet libraries in `WEB-INF/lib` if not using Maven.
+Servlets using annotations (e.g., @WebServlet) do not require web.xml configuration.
 
 ## 👨‍💻 Author
 
